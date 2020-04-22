@@ -15,6 +15,13 @@ namespace ProjectMgmt.Web.Models.Adapters
             // Project Income
             CreateMap<ProjectIncome, ProjectIncomeViewModel>()
                 .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name));
+            CreateMap<CreateIncomeViewModel, ProjectIncome>();
+            CreateMap<ProjectIncome, EditIncomeViewModel>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.Project.Id)) 
+                .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name));
+            CreateMap<EditIncomeViewModel, ProjectIncome>();
+            CreateMap<ProjectIncome, IncomeDetailsViewModel>()
+                .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name));
         }
     }
 }

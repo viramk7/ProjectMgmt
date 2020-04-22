@@ -15,6 +15,6 @@ namespace ProjectMgmt.Web.Data
 
         public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<ProjectIncome> Income { get; set; }
+        public DbSet<ProjectIncome> Incomes { get; set; }
     }
 }
