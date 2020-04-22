@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProjectIncomeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @{
+        var createincomeParams = new Dictionary<string, string> { { "projectId", Convert.ToString(ViewBag.ProjectId) } };
+    }
+    <a asp-route="createincome" asp-all-route-data="createincomeParams">Create New</a>
+</p>
+<input type="hidden" value="@ViewBag.ProjectId" />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomeFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomeDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomeFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomeDate)
+                </td>
+
+                <td>
+                    @{
+                        var incomeDetailsParams = new Dictionary<string, string> {
+                                { "projectId" ,  Convert.ToString(ViewBag.ProjectId)},
+                                { "id", Convert.ToString(item.Id) }
+                        };
+                    }
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-route="incomedetails" asp-all-route-data="incomeDetailsParams">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
