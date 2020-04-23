@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjectMgmt.Web.Data.Entities;
+using System.Globalization;
 
 namespace ProjectMgmt.Web.Models.Adapters
 {
@@ -22,6 +23,12 @@ namespace ProjectMgmt.Web.Models.Adapters
             CreateMap<EditIncomeViewModel, ProjectIncome>();
             CreateMap<ProjectIncome, IncomeDetailsViewModel>()
                 .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name));
+
+            //Emp Payouts
+            CreateMap<EmployeePayout, EmployeePayoutDetailsViewModel>()
+                .ForMember(d => d.ProjectName, opt => opt.MapFrom(s => s.Project.Name))
+                .ForMember(d => d.EmployeeName, opt => opt.MapFrom(s => s.Employee.Name))
+                .ForMember(d => d.PaymentDateStr, opt => opt.MapFrom(s => s.PaymentDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)));
         }
     }
 }

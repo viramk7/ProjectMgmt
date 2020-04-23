@@ -49,13 +49,14 @@
                 @Html.DisplayFor(modelItem => item.UpdatedOn)
             </td>*@
         <td>
-            @{ 
-                var listIncomeParam = new Dictionary<string, string> { { "projectId", item.Id.ToString()} };
+            @{
+                var projectIdParam = new Dictionary<string, string> { { "projectId", item.Id.ToString() } };
             }
 
             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-route="listincomes" asp-all-route-data="listIncomeParam">Incomes</a> |
+            <a asp-route="listincomes" asp-all-route-data="projectIdParam">Incomes</a> |
+            <a asp-route="listemppayouts" asp-all-route-data="projectIdParam">Payouts</a> |
             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
         </td>
         </tr>
